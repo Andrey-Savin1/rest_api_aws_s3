@@ -48,7 +48,6 @@ public class SecurityService {
         return generateToken(expirationDate, claims, subject);
     }
 
-
     private TokenDetails generateToken(Date expirationDate, Map<String, Object> claims, String subject) {
         Date createDate = new Date();
         String token =

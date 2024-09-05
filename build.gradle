@@ -2,11 +2,10 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version "$springBootVersion"
     id 'io.spring.dependency-management' version "$springDependencyManagementVersion"
-   // id 'com.diffplug.spotless' version "$spotlessVersion"
 }
 
 group = 'ru.savin'
-version = '1.0.0'
+version = '1.0.1'
 
 java {
     toolchain {
@@ -14,11 +13,6 @@ java {
     }
 }
 
-//configurations {
-//    compileOnly {
-//        extendsFrom annotationProcessor
-//    }
-//}
 
 repositories {
     mavenCentral()
@@ -52,9 +46,7 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
 
-
 }
-
 
 tasks.named('test') {
     useJUnitPlatform()

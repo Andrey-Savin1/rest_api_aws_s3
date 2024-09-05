@@ -20,6 +20,4 @@ public class AuthResponseDto {
     private String token;
     private Date issuedAt;
     private Date expiresAt;
-
-
 }

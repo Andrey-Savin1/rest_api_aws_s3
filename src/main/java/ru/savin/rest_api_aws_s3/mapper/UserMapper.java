@@ -9,7 +9,6 @@ import ru.savin.rest_api_aws_s3.model.User;
 public interface UserMapper {
 
     UserDto map(User user);
-
     @InheritInverseConfiguration
     User map(UserDto userDto);
 

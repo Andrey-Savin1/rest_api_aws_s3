@@ -8,11 +8,9 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import ru.savin.rest_api_aws_s3.dto.UserDto;
-import ru.savin.rest_api_aws_s3.mapper.EventMapper;
 import ru.savin.rest_api_aws_s3.mapper.UserMapper;
 import ru.savin.rest_api_aws_s3.model.User;
 import ru.savin.rest_api_aws_s3.repositiry.EventRepository;
-import ru.savin.rest_api_aws_s3.service.EventService;
 import ru.savin.rest_api_aws_s3.service.UserService;
 
 @RestController()
@@ -22,7 +20,6 @@ public class UserRestControllerV1 {
 
     private final UserService userService;
     private final UserMapper userMapper;
-    private final EventRepository eventRepository;
 
 
     @PostMapping("/user")
@@ -41,7 +38,6 @@ public class UserRestControllerV1 {
         return userService.getById(id)
                 .flatMap(
                         user -> {
-                            var q = eventRepository.findByUser_id(user.getId());
                             User updateUser = userMapper.map(userDto);
                             updateUser.setId(user.getId());
                             return userService.update(updateUser).map(userMapper::map).map(ResponseEntity::ok);

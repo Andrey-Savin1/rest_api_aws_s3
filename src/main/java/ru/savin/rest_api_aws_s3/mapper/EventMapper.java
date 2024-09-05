@@ -9,7 +9,6 @@ import ru.savin.rest_api_aws_s3.model.Event;
 public interface EventMapper {
 
     EventDto map(Event event);
-
     @InheritInverseConfiguration
     Event map(EventDto eventDto);
 }

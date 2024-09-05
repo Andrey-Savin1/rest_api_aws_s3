@@ -55,7 +55,6 @@ public class UserServiceImpl implements UserService {
                 })
                 .doOnNext(updateUser -> log.debug("Найден юзер с id: {}", updateUser.getId()))
                 .doOnError(error -> log.error("Ошибка обновления юзера", error));
-
     }
 
     @Override
@@ -64,7 +63,6 @@ public class UserServiceImpl implements UserService {
                 .doOnNext(user -> log.debug("Найден юзер с id: {}", id))
                 .doOnError(error -> log.error("Юзер с id: {} не найден", id, error));
     }
-
 
     @Override
     public Flux<User> getAll() {

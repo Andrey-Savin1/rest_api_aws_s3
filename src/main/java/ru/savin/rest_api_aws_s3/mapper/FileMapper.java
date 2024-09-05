@@ -9,7 +9,6 @@ import ru.savin.rest_api_aws_s3.model.File;
 public interface FileMapper {
 
     FileDto map(File file);
-
     @InheritInverseConfiguration
     File map(FileDto fileDto);
 

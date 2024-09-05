@@ -11,5 +11,4 @@ public interface UserRepository extends R2dbcRepository<User, Long> {
 
     Mono<User> findByUsername(String username);
 
-
 }

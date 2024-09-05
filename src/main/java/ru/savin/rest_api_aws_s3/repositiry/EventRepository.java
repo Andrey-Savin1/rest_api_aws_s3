@@ -9,6 +9,4 @@ import ru.savin.rest_api_aws_s3.model.Event;
 
 public interface EventRepository extends R2dbcRepository<Event, Long> {
 
-
-	Flux<Event> findByUser_id(Long id);
 }

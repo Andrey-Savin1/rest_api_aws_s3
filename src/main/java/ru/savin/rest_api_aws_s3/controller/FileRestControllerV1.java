@@ -34,19 +34,8 @@ import java.util.List;
 @RequestMapping("/api/v1/files")
 public class FileRestControllerV1 {
 
-
 	private final FileService fileService;
 	private final FileMapper fileMapper;
-	private final S3Service s3Service;
-	private final UserService userService;
-	private final EventService eventService;
-	private final UserMapper userMapper;
-
-
-	//@PostMapping("file")
-	public Mono<File> uploadFile(@PathVariable Long id, @RequestBody File file) {
-		return fileService.save(file);
-	}
 
 
 	@GetMapping("/{id}")
@@ -65,6 +54,7 @@ public class FileRestControllerV1 {
 		return fileService.getAll().map(fileMapper::map);
 	}
 
+
 	@DeleteMapping("/{id}")
 	@PreAuthorize("hasAnyAuthority('MODERATOR', 'ADMIN')")
 	public Mono<ResponseEntity<Void>> deleteFileById(@PathVariable Long id) {
@@ -77,7 +67,6 @@ public class FileRestControllerV1 {
 										.switchIfEmpty(Mono.just(new ResponseEntity<>(HttpStatus.NOT_FOUND)))
 				);
 	}
-
 
 	@PostMapping(value = "/upload" )
 	@PreAuthorize("hasAnyAuthority('USER', 'MODERATOR', 'ADMIN')")

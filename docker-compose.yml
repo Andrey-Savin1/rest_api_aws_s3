@@ -1,0 +1,41 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:16
+    container_name: postgres_db
+    environment:
+      POSTGRES_DB: aws_s3_bd
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - mynetwork
+
+  app:
+    build:
+       context: .
+       dockerfile: Dockerfile
+    container_name: aws_s3
+    depends_on:
+      - db
+    environment:
+      SPRING_APPLICATION_NAME: rest_api_aws_s3
+      SPRING_R2DBC_URL: r2dbc:postgresql://db:5432/aws_s3_bd
+      SPRING_R2DBC_USERNAME: postgres
+      SPRING_R2DBC_PASSWORD: 1234
+    ports:
+      - "8080:8080"
+    networks:
+      - mynetwork
+
+volumes:
+  db_data:
+
+networks:
+  mynetwork:
+    driver: bridge
+
